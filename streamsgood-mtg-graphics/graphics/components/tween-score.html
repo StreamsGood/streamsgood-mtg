@@ -1,0 +1,55 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<script src="../../bower_components/gsap/src/minified/TweenMax.min.js"></script>
+
+<dom-module id="tween-score">
+	<template>
+		[[_displayValue]]
+	</template>
+	<script>
+		(function() {
+			class TweenScore extends Polymer.Element {
+				static get is() {
+					return "tween-score";
+				}
+
+				static get properties() {
+					return {
+						value: {
+							type: Number,
+							observer: '_change'
+						},
+						_displayValue: {
+							type: Number,
+							value: 20
+						}
+					}
+				}
+
+				_change(newValue) {
+					const delta = Number(newValue) - this._displayValue;
+					const duration = this.calculateTweenDuration(delta);
+					this.tween(newValue, duration);
+				}
+
+				calculateTweenDuration(delta) {
+					const deltaIntervals = delta / 1;
+					return Math.min(deltaIntervals * 0.2, 2.0);
+				}
+
+				tween(newValue, duration) {
+					if (this._tween) {
+						this._tween.kill();
+						this._tween = null;
+					}
+
+					this._tween = TweenLite.to(this, duration, {
+						_displayValue: newValue,
+						ease: Power2.easeOut
+					});
+				}
+			}
+
+			customElements.define(TweenScore.is, TweenScore);
+		})()
+	</script>
+</dom-module>

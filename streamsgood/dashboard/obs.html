@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="import" href="/bundles/streamsgood/bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+	<script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+
+	<link rel="import" href="../bower_components/nodecg-replicant/nodecg-replicant.html">
+
+	<link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-area.html">
+	<link rel="import" href="../bower_components/vaadin-material-theme/vaadin-text-area.html">
+
+	<custom-style>
+		<style include="iron-flex iron-flex-alignment">
+			body {
+				margin: 0;
+				margin-bottom: 15px;
+			}
+
+			#connected {
+				width: 100%;
+				font-size: 15px;
+				text-align: center;
+
+				color: white;
+				background: green;
+
+				padding: 4px 0;
+				margin-bottom: 10px;
+			}
+
+			#connected.disconnected {
+				background: red;
+			}
+
+			.scene {
+				width: 85%;
+				padding: 15px 0;
+				text-align: center;
+				font-size: 17.5px;
+
+				margin: 5px 0;
+				border: none;
+				border-radius: 3px;
+				box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2),
+							0 0 0 1px rgba(0, 0, 0, 0.04);
+			}
+
+			.scene:hover {
+				cursor: pointer;
+			}
+
+			.active {
+				background-color: rgba(59, 182, 66, 0.2);
+			}
+		</style>
+	</custom-style>
+
+	<style>
+	</style>
+</head>
+<body>
+	<dom-bind id="dom-bind">
+		<template>
+			<div class="layout vertical center">
+				<div id="connected" class$="{{_connectedStatus(connected)}}">{{_connectedMessage(connected)}}</div>
+				<template is="dom-repeat" items="{{scenes}}">
+					<div class$="scene {{_active(item, currentScene)}}" on-click="switchScenes">[[item.name]]</div>
+				</template>
+			</div>
+
+			<nodecg-replicant replicant-name="obs:scenes" value="{{scenes}}"></nodecg-replicant>
+			<nodecg-replicant replicant-name="obs:currentScene" value="{{currentScene}}"></nodecg-replicant>
+			<nodecg-replicant replicant-name="obs:connected" value="{{connected}}"></nodecg-replicant>
+		</template>
+	</dom-bind>
+
+	<script>
+		(function() {
+			window.addEventListener('WebComponentsReady', function() {
+				let domBind = document.querySelector('#dom-bind');
+
+				domBind.switchScenes = (e) => {
+					nodecg.sendMessage('obs:SetCurrentScene', e.model.item.name);
+				};
+
+				domBind._active = (scene, currentScene) => {
+					return scene.name == currentScene ? 'active' : 'inactive';
+				};
+
+				domBind._connectedMessage = (connected) => {
+					return connected ? 'Connected' : 'Reconnecting...';
+				};
+
+				domBind._connectedStatus = (connected) => {
+					return connected ? 'connected' : 'disconnected';
+				}
+			});
+		})();
+	</script>
+</body>
+</html>

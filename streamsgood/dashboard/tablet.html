@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+	<link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.css">
+
+	<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+	<link rel="import" href="../bower_components/nodecg-replicant/nodecg-replicant.html">
+
+	<link rel="import" href="./components/tablet-player.html">
+
+	<custom-style>
+		<style include="iron-flex iron-flex-alignment iron-flex-reverse"></style>
+	</custom-style>
+
+	<style>
+		@font-face {
+			font-family: 'Menlo-Regular';
+			src: url('fonts/Menlo-Regular.ttf');
+		}
+
+		body {
+			margin: 0;
+			background-color: #282a36;
+			color: #f8f8f2;
+			font-family: 'Menlo-Regular';
+		}
+
+		input, button {
+			border: 0;
+			color: unset;
+			background: unset;
+			text-align: center;
+			font: unset;
+		}
+
+		#content {
+			margin: 0;
+			height: 100vh;
+			overflow: hidden;
+		}
+
+		#center {
+			width: 7.5vw;
+			background: #44475a;
+		}
+
+		.button i {
+			font-size: 5vw;
+			padding-top: 1.5vh;
+			padding-bottom: 1.5vh;
+		}
+
+		.button.swap {
+			margin-top: 0.5vh;
+		}
+
+		.button.reset {
+			margin-bottom: 20vh;
+		}
+	</style>
+</head>
+<body>
+	<dom-bind id="dom-bind">
+		<template>
+			<div id="content" class$="flex layout horizontal center-justified {{_isReversed(tabletFlip)}}">
+				<tablet-player id="t1" player="{{p1}}" class="flex"></tablet-player>
+
+				<div id="center" class="layout vertical">
+					<button class="button swap" on-click="_swap"><i class="fa fa-exchange"></i></button>
+					<div class="flex"></div>
+					<button class="button reset" on-click="_reset"><i class="fa fa-undo"></i></button>
+				</div>
+
+				<tablet-player id="t2" player="{{p2}}" class="flex"></tablet-player>
+			</div>
+
+			<nodecg-replicant replicant-name="p1-name" value="{{p1.name}}"></nodecg-replicant>
+			<nodecg-replicant replicant-name="p1-life" value="{{p1.life}}"></nodecg-replicant>
+			<nodecg-replicant replicant-name="p1-poison" value="{{p1.poison}}"></nodecg-replicant>
+			<nodecg-replicant replicant-name="p1-games" value="{{p1.games}}"></nodecg-replicant>
+
+			<nodecg-replicant replicant-name="p2-name" value="{{p2.name}}"></nodecg-replicant>
+			<nodecg-replicant replicant-name="p2-life" value="{{p2.life}}"></nodecg-replicant>
+			<nodecg-replicant replicant-name="p2-poison" value="{{p2.poison}}"></nodecg-replicant>
+			<nodecg-replicant replicant-name="p2-games" value="{{p2.games}}"></nodecg-replicant>
+
+			<nodecg-replicant replicant-name="tablet-flip" value="{{tabletFlip}}"></nodecg-replicant>
+		</template>
+	</dom-bind>
+	<script>
+	(function() {
+		window.addEventListener('WebComponentsReady', function() {
+			let domBind = document.querySelector('#dom-bind');
+
+			domBind.p1 = {};
+			domBind.p2 = {};
+
+			domBind._swap = (e) => {
+				domBind.tabletFlip = !domBind.tabletFlip;
+			};
+
+			domBind._isReversed = () => {
+				return domBind.tabletFlip ? 'horizontal-reverse' : '';
+			};
+
+			domBind._reset = (e) => {
+				nodecg.sendMessage('resetLifeTotals');
+			};
+		});
+	})();
+	</script>
+</body>
+</html>

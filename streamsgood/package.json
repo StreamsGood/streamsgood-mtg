@@ -1,0 +1,57 @@
+{
+  "name": "streamsgood",
+  "version": "0.0.0",
+  "description": "",
+  "homepage": "",
+  "author": {
+    "name": "Brendan Hagan",
+    "email": "bhaganksu@gmail.com",
+    "url": ""
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": ">=0.9",
+    "dashboardPanels": [
+      {
+        "name": "game",
+        "title": "Game Info",
+        "width": 4,
+        "file": "game.html",
+        "headerColor": "#9f9bbd"
+      },
+      {
+        "name": "obs",
+        "title": "OBS",
+        "width": 2,
+        "file": "obs.html"
+      },
+      {
+        "name": "tablet",
+        "title": "Tablet",
+        "file": "tablet.html",
+        "fullbleed": true
+      },
+      {
+        "name": "message",
+        "title": "Message",
+        "width": 4,
+        "file": "message.html",
+        "workspace": "Message"
+      }
+    ]
+  },
+  "repository": "https://github.com/nodecg/nodecg.git",
+  "license": "MIT",
+  "dependencies": {
+    "nodecg-utility-obs": "^4.1.2"
+  }
+}

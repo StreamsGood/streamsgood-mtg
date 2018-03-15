@@ -1,0 +1,96 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/vaadin-text-field/vaadin-text-field.html">
+
+<dom-module id="good-counter">
+	<template>
+		<custom-style>
+			<style include="iron-flex iron-flex-alignment">
+				:host {
+					min-height: 50px;
+				}
+
+				#content {
+					height: 100%;
+					margin: 0;
+				}
+
+				input {
+					background: unset;
+					border: unset;
+					text-align: center;
+
+					height: 100%;
+					width: 75%;
+
+					font-size: unset;
+				}
+
+				button {
+					margin: 2px;
+					color: white;
+
+					box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.04);
+
+					border: none;
+					border-radius: 3px;
+				}
+
+				.plus {
+					background-color: #5BA664;
+				}
+
+				.minus {
+					background-color: #C9513E;
+				}
+			</style>
+		</custom-style>
+
+		<div id="content" class="layout horizontal">
+			<input value="{{value}}" on-change="_change" on-input="_change">
+			<div class="layout vertical flex">
+				<button class="flex plus" on-click="_increment"><iron-icon icon="icons:expand-less"></iron-icon></button>
+				<button class="flex minus" on-click="_decrement"><iron-icon icon="icons:expand-more"></iron-icon></button>
+			</div>
+		</div>
+	</template>
+	<script>
+		(function() {
+			class GoodCounter extends Polymer.Element {
+				static get is() {
+					return "good-counter";
+				}
+
+				static get properties() {
+					return {
+						value: {
+							type: Number,
+							value: 0,
+							notify: true
+						},
+						label: String,
+						step: {
+							type: Number,
+							value: 1
+						}
+					}
+				}
+
+				_change(event) {
+					this.value = Number(event.path[0].value) || 0;
+				}
+
+				_increment() {
+					this.value = Number(this.value) + this.step;
+				}
+
+				_decrement() {
+					this.value = Number(this.value) - this.step;
+				}
+			}
+
+			customElements.define(GoodCounter.is, GoodCounter);
+		})()
+	</script>
+</dom-module>

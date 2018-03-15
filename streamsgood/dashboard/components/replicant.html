@@ -1,0 +1,46 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<script>
+	class Replicant extends Polymer.Element {
+		static get is() {
+			return 'replicant';
+		}
+
+		static get properties() {
+			return {
+				replicantName: {
+					type: String
+				},
+				replicantBundle: {
+					type: String,
+					value() {
+						if (typeof window.nodecg === 'object') {
+							return window.nodecg.bundleName;
+						}
+					}
+				},
+				value: {
+					type: Object,
+					observer: "_changed",
+					notify: true
+				}
+			}
+		}
+
+		ready() {
+			this.replicant = nodecg.Replicant(this.replicantName, this.replicantBundle);
+			this.replicant.on('change', (newValue, oldValue) => {
+				this._ignoreServerEmit = true;
+				this.set('value', newValue);
+			});
+		}
+
+		_changed(newValue) {
+			if (this.replicant && !this._ignoreServerEmit) {
+				this.replicant.value = newValue;
+			}
+		}
+	}
+
+	customElements.define(Replicant.is, Replicant);
+</script>

@@ -1,0 +1,18 @@
+{
+  "name": "streamsgood",
+  "license": "MIT",
+  "dependencies": {
+    "iron-flex-layout": "^2.0.0",
+    "iron-icons": "PolymerElements/iron-icons#^2.0.1",
+    "vaadin-material-theme": "vaadin/vaadin-material-theme#^0.3.0",
+    "vaadin-button": "vaadin/vaadin-button#^1.0.5",
+    "nodecg-vaadin-checkbox": "StreamsGood/nodecg-vaadin-checkbox#^1.0.0",
+    "nodecg-vaadin-text-field": "StreamsGood/nodecg-vaadin-text-field#^1.0.0",
+    "webcomponentsjs": "^1.1.0",
+    "components-font-awesome": "^4.7.0",
+	"nodecg-replicant": "NodeCGElements/nodecg-replicant#^1.0.1"
+  },
+  "resolutions": {
+    "vaadin-control-state-mixin": "^2.0.0"
+  }
+}

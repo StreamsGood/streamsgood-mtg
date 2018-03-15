@@ -1,0 +1,81 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<script src="../../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="./numeric-spinner.html">
+
+
+<dom-module id="tablet-player">
+	<template>
+		<custom-style>
+			<style include="iron-flex iron-flex-alignment iron-flex-factors"></style>
+		</custom-style>
+
+		<style>
+		.content {
+			height: 100%;
+		}
+
+		.name {
+			padding-top: 2.5vh;
+			font-size: 5vh;
+			text-align: center;
+		}
+
+		.life {
+			font-size: 50vh;
+			width: 100%;
+			/* min-height: 50vh; */
+		}
+
+		.poison, .games {
+			font-size: 15vh;
+			width: 100%;
+		}
+
+		.label {
+			padding-bottom: 2.5vh;
+			text-align: center;
+			font-size: 3vh;
+			/* color: #44475a; */
+
+			color: white;
+			opacity: 0.4;
+		}
+		</style>
+
+		<div class="content layout vertical justified">
+			<div class="name">{{player.name}}</div>
+			<div class="layout horizontal">
+				<numeric-spinner class="life flex" value="{{player.life}}"></numeric-spinner>
+			</div>
+			<div class="layout horizontal">
+				<numeric-spinner class="poison flex" value="{{player.poison}}"></numeric-spinner>
+				<numeric-spinner class="games flex" value="{{player.games}}"></numeric-spinner>
+			</div>
+			<div class="layout horizontal">
+				<div class="label flex">Poison</div>
+				<div class="label flex">Games</div>
+			</div>
+		</div>
+	</template>
+	<script>
+		(function () {
+			class TabletPlayer extends Polymer.Element {
+				static get is() {
+					return "tablet-player";
+				}
+
+				static get properties() {
+					return {
+						player: {
+							type: Object,
+							notify: true
+						}
+					}
+				}
+			}
+
+			customElements.define(TabletPlayer.is, TabletPlayer);
+		})()
+	</script>
+</dom-module>

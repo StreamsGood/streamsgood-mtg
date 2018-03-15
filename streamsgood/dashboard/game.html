@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+	<script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+
+	<link rel="import" href="../bower_components/nodecg-replicant/nodecg-replicant.html">
+
+	<link rel="import" href="../bower_components/nodecg-vaadin-text-field/nodecg-vaadin-text-field.html">
+	<link rel="import" href="../bower_components/nodecg-vaadin-checkbox/nodecg-vaadin-checkbox.html">
+
+	<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+	<link rel="import" href="../bower_components/iron-icons/image-icons.html">
+	<link rel="import" href="../bower_components/iron-icons/notification-icons.html">
+
+	<link rel="import" href="../bower_components/vaadin-material-theme/vaadin-button.html">
+	<link rel="import" href="../bower_components/vaadin-button/vaadin-button.html">
+
+	<link rel="import" href="../bower_components/vaadin-material-theme/vaadin-text-field.html">
+	<link rel="import" href="../bower_components/vaadin-material-theme/vaadin-checkbox.html">
+
+	<link rel="import" href="components/good-counter.html">
+
+	<custom-style>
+		<style include="iron-flex iron-flex-alignment"></style>
+	</custom-style>
+
+	<style>
+		body {
+			margin-top: 5px;
+		}
+
+		.flex + .flex {
+			padding-left: 0.75em;
+		}
+
+		.name, .deck {
+			flex: 3 0px;
+		}
+
+		.options {
+			padding-top: 1em;
+		}
+
+		nodecg-vaadin-text-field {
+			padding-top: 8px;
+			margin-bottom: 2px;
+		}
+
+		.life-buttons {
+			padding-top: 1em;
+		}
+
+		.life-buttons vaadin-button {
+			height: 2em;
+			font-size: 2em;
+			line-height: 0;
+			flex: 1 1 auto;
+		}
+
+		vaadin-button {
+			min-width: unset;
+		}
+
+		nodecg-vaadin-text-field {
+			width: unset;
+		}
+
+		.life good-counter {
+			height: 80px;
+			font-size: 75px;
+		}
+
+		.other-numerics {
+			margin-top: 15px;
+		}
+
+		.other-numerics label {
+			transform-origin: 0 75%;
+			transform: scale(0.75);
+			color: rgba(0, 0, 0, 0.54);
+			margin-bottom: .2em;
+		}
+
+		.other-numerics good-counter {
+			height: 50px;
+			font-size: 45px;
+		}
+	</style>
+</head>
+<body>
+	<dom-bind id="dom-bind"><template>
+	<div class="life layout horizontal">
+		<good-counter value="{{p1-life}}"></good-counter>
+		<good-counter value="{{p2-life}}"></good-counter>
+	</div>
+
+	<div class="layout horizontal">
+		<nodecg-vaadin-text-field class="flex name" label="Player #1" replicant-name="p1-name"></nodecg-vaadin-text-field>
+		<nodecg-vaadin-text-field class="flex name" label="Player #2" replicant-name="p2-name"></nodecg-vaadin-text-field>
+	</div>
+
+	<div class="layout horizontal">
+		<nodecg-vaadin-text-field class="flex deck" label="Deck Name" replicant-name="p1-deck"></nodecg-vaadin-text-field>
+		<nodecg-vaadin-text-field class="flex record" label="Record" replicant-name="p1-record"></nodecg-vaadin-text-field>
+
+		<nodecg-vaadin-text-field class="flex deck" label="Deck Name" replicant-name="p2-deck"></nodecg-vaadin-text-field>
+		<nodecg-vaadin-text-field class="flex record" label="Record" replicant-name="p2-record"></nodecg-vaadin-text-field>
+	</div>
+
+	<div class="other-numerics layout horizontal center-justified">
+		<div class="layout vertical flex">
+			<label>Poison</label>
+			<good-counter value="{{p1-poison}}"></good-counter>
+		</div>
+
+		<div class="layout vertical flex">
+			<label>Games</label>
+			<good-counter value="{{p1-games}}"></good-counter>
+		</div>
+
+		<div class="layout vertical flex">
+			<label>Poison</label>
+			<good-counter value="{{p2-poison}}"></good-counter>
+		</div>
+
+		<div class="layout vertical flex">
+			<label>Games</label>
+			<good-counter value="{{p2-games}}"></good-counter>
+		</div>
+	</div>
+
+	<div class="options layout horizontal center-justified">
+		<vaadin-button class="flex" theme="raised" onclick="nodecg.sendMessage('resetLifeTotals')">
+			<iron-icon icon="icons:refresh"></iron-icon>
+			&nbsp;Reset Life Totals
+		</vaadin-button>
+
+		<vaadin-button class="flex" theme="raised" onclick="nodecg.sendMessage('resetAll')">
+			<iron-icon icon="notification:priority-high"></iron-icon>
+			&nbsp;Reset All
+		</vaadin-button>
+	</div>
+
+	<div class="details layout horizontal">
+		<nodecg-vaadin-text-field class="flex" label="Event Name" replicant-name="event.name"></nodecg-vaadin-text-field>
+		<nodecg-vaadin-text-field class="flex" label="Round" replicant-name="event.round"></nodecg-vaadin-text-field>
+	</div>
+
+	<!-- <div class="details layout horizontal">
+		<nodecg-vaadin-text-field class="flex" label="Commentator #1" replicant-name="commentator1"></nodecg-vaadin-text-field>
+		<nodecg-vaadin-text-field class="flex" label="Commentator #2" replicant-name="commentator2"></nodecg-vaadin-text-field>
+	</div> -->
+
+	<nodecg-replicant replicant-name="p1-life" value="{{p1-life}}"></nodecg-replicant>
+	<nodecg-replicant replicant-name="p1-poison" value="{{p1-poison}}"></nodecg-replicant>
+	<nodecg-replicant replicant-name="p1-games" value="{{p1-games}}"></nodecg-replicant>
+
+	<nodecg-replicant replicant-name="p2-life" value="{{p2-life}}"></nodecg-replicant>
+	<nodecg-replicant replicant-name="p2-poison" value="{{p2-poison}}"></nodecg-replicant>
+	<nodecg-replicant replicant-name="p2-games" value="{{p2-games}}"></nodecg-replicant>
+</template>
+</dom-bind>
+</body>
+</html>

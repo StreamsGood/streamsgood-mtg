@@ -1,0 +1,24 @@
+{
+  "name": "streamsgood-mtg-graphics",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Brendan Hagan <bhaganksu@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/nodecg/nodecg",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "nodecg-replicant": "NodeCGElements/nodecg-replicant#^1.0.1",
+    "iron-flex-layout": "^2.0.3",
+    "webcomponentsjs": "^1.1.0",
+    "polymer": "^2.5.0",
+    "gsap": "^1.20.3"
+  }
+}

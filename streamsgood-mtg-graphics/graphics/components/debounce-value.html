@@ -1,0 +1,48 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<script>
+	(function () {
+		class DebounceValue extends Polymer.Element {
+			static get is() {
+				return 'debounce-value';
+			}
+
+			static get properties() {
+				return {
+					source: {
+						type: Object,
+						observer: '_change'
+					},
+					destination: {
+						type: Object,
+						notify: true
+					},
+					wait: {
+						type: Number,
+						value: 0
+					}
+				}
+			}
+
+			_assignValue() {
+				this.destination = this.source;
+			}
+
+			_change() {
+				if (!this._settled) {
+					this._assignValue();
+					this._settled = true;
+					return;
+				}
+
+				this._debouncer = Polymer.Debouncer.debounce(this._debouncer,
+					Polymer.Async.timeOut.after(this.wait),
+					() => {
+						this._assignValue()
+					});
+			}
+		}
+
+		customElements.define(DebounceValue.is, DebounceValue);
+	})()
+</script>

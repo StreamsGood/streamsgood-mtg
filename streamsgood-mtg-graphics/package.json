@@ -1,0 +1,32 @@
+{
+  "name": "streamsgood-mtg-graphics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "nodecg": {
+    "compatibleRange": ">=0.9",
+    "graphics": [
+      {
+        "file": "mtg-score.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "mtg-card.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "message.html",
+        "width": 1920,
+        "height": 1080
+      }
+    ]
+  },
+  "dependencies": {}
+}

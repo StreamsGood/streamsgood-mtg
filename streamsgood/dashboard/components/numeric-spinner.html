@@ -1,0 +1,111 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<script src="../../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<dom-module id="numeric-spinner">
+	<template>
+		<custom-style><style include="iron-flex iron-flex-alignment"></style></custom-style>
+
+		<style>
+			#container {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+
+			#value {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				top: 0;
+
+				text-align: center;
+			}
+
+			#buttons {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				z-index: 2;
+				top: -100%;
+			}
+
+			#increment, #decrement {
+				width: 50%;
+				height: 100%;
+
+				display: block;
+			}
+
+			#decrement {
+				background: linear-gradient(to left, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 1%);
+			}
+
+			#increment {
+				background: linear-gradient(to right, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 1%);
+			}
+
+			#increment:active, #decrement:active {
+				background: rgba(255, 255, 255, 0.05);
+				transition: 0.1s;
+			}
+
+			#increment {
+				right: 0;
+			}
+
+			#buttons > div {
+				vertical-align: bottom;
+				text-align: center;
+			}
+
+			#buttons > div > span {
+				font-size: 3.5vh;
+				vertical-align: bottom;
+				opacity: 0.4;
+			}
+		</style>
+
+		<div id="container">
+			<div id="value" class="flex">{{value}}</div>
+			<div id="buttons" class="flex layout horizontal center-justified">
+				<div id="decrement" on-click="_decrement"><span>-</span></div>
+				<div id="increment" on-click="_increment"><span>+</span></div>
+			</div>
+		</div>
+	</template>
+	<script>
+		(function() {
+			class NumericSpinner extends Polymer.Element {
+				static get is() {
+					return "numeric-spinner";
+				}
+
+				static get properties() {
+					return {
+						value: {
+							type: Number,
+							notify: true
+						},
+						step: {
+							type: Number,
+							value: 1
+						}
+					}
+				}
+
+				_increment() {
+					this.value = Number(this.value) + this.step;
+				}
+
+				_decrement() {
+					this.value = Number(this.value) - this.step;
+				}
+			}
+
+			customElements.define(NumericSpinner.is, NumericSpinner);
+		})()
+	</script>
+</dom-module>

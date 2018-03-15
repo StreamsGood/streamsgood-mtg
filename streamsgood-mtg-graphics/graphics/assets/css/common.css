@@ -1,0 +1,21 @@
+@font-face {
+	font-family: 'Bebas Neue Light';
+	src: url('../fonts/BebasNeue Book.otf');
+}
+
+@font-face {
+	font-family: 'Bebas Neue Regular';
+	src: url('../fonts/BebasNeue Regular.otf');
+}
+
+@font-face {
+	font-family: 'Bebas Neue Bold';
+	src: url('../fonts/BebasNeue Bold.otf');
+}
+
+body {
+	margin: 0;
+
+	font-family: 'Bebas Neue Bold';
+	color: #F0EAEC;
+}

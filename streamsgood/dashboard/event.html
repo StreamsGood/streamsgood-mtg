@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="import" href="/bundles/streamsgood/bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+	<link rel="import" href="../bower_components/nodecg-vaadin-text-field/nodecg-vaadin-text-field.html">
+	<link rel="import" href="../bower_components/vaadin-material-theme/vaadin-text-field.html">
+
+	<custom-style>
+		<style include="iron-flex iron-flex-alignment"></style>
+	</custom-style>
+
+	<style>
+		body {
+			margin-top: -5px;
+		}
+
+		nodecg-vaadin-text-field {
+			width: 100%;
+			padding-top: 8px;
+			margin-bottom: 2px;
+		}
+	</style>
+</head>
+<body>
+	<div class="layout vertical">
+		<nodecg-vaadin-text-field label="Event Name" replicant-name="event.name"></nodecg-vaadin-text-field>
+		<nodecg-vaadin-text-field label="Round" replicant-name="event.round"></nodecg-vaadin-text-field>
+
+		<nodecg-vaadin-text-field label="Commentator #1" replicant-name="commentator1"></nodecg-vaadin-text-field>
+		<nodecg-vaadin-text-field label="Commentator #2" replicant-name="commentator2"></nodecg-vaadin-text-field>
+	</div>
+</body>
+</html>

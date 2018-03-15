@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+	<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+	<link rel="import" href="components/debounce-replicant.html">
+
+	<custom-style>
+		<style include="iron-flex iron-flex-alignment iron-flex-factors">
+			@font-face {
+				font-family: 'Bebas Neue Bold';
+				src: url('assets/fonts/BebasNeue Bold.otf');
+			}
+
+			#event {
+				font-family: 'Bebas Neue Bold';
+				color: #F0EAEC;
+				font-size: 5vh
+			}
+
+			body {
+				margin: 0;
+				width: 100vw;
+				height: 100vh;
+				overflow: hidden;
+			}
+
+			#container {
+				width: 30vw;
+				height: 100%;
+				background: black;
+				float: right;
+
+				background: #292b2e;
+				background-image: -webkit-linear-gradient(162deg, #bb7c3e 39.65%, transparent 40%);
+
+				border-left: 0.5vh #bb7c3e solid;
+			}
+
+			#card {
+				margin-top: 20%;
+				padding: 0 5% 0 5%;
+				width: 100%;
+				box-sizing: border-box;
+				object-fit: scale-down;
+			}
+		</style>
+	</custom-style>
+</head>
+<body>
+	<dom-bind id="dom-bind">
+		<template>
+			<div id="container" class="layout vertical center-justified">
+				<img id="card" src="[[selected.card_faces.0.image_uris.png]]">
+				<!-- <div id="event">[[eventName]]</div> -->
+			</div>
+
+			<debounce-replicant replicant-name="selected" replicant-bundle="nodecg-scryfall" value="{{selected}}" wait="0"></debounce-replicant>
+			<!-- <debounce-replicant replicant-name="event.name" replicant-bundle="streamsgood" value="{{eventName}}" wait="500"></debounce-replicant> -->
+		</template>
+	</dom-bind>
+	<script>
+	(function() {
+		const hovered = nodecg.Replicant('hovered', 'nodecg-scryfall');
+
+		window.addEventListener('WebComponentsReady', function() {
+			let domBind = document.querySelector('#dom-bind');
+			const img = new Image();
+
+			domBind.selected = {
+				card_faces: [
+					{
+						image_uris: {
+							png: 'https://img.scryfall.com/cards/large/en/lea/288.jpg'
+						}
+					}
+				]
+			};
+
+			hovered.on('change', (newValue, oldValue) => {
+				console.log(newValue, oldValue);
+				if (newValue && newValue.image_uris) {
+					img.src = newValue.image_uris.png;
+					img.onload = () => { console.log(`Loaded ${img.src}`); }
+				}
+			});
+		});
+	})();
+	</script>
+</body>
+</html>

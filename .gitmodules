@@ -1,0 +1,9 @@
+[submodule "nodecg-countdown"]
+	path = nodecg-countdown
+	url = https://github.com/StreamsGood/nodecg-countdown
+[submodule "nodecg-twitch-chat"]
+	path = nodecg-twitch-chat
+	url = https://github.com/StreamsGood/nodecg-twitch-chat
+[submodule "nodecg-scryfall"]
+	path = nodecg-scryfall
+	url = https://github.com/StreamsGood/nodecg-scryfall
