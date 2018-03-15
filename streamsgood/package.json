@@ -4,9 +4,7 @@
   "description": "",
   "homepage": "",
   "author": {
-    "name": "Brendan Hagan",
-    "email": "bhaganksu@gmail.com",
-    "url": ""
+    "name": "Brendan Hagan"
   },
   "files": [
     "dashboard",
@@ -52,6 +50,6 @@
   "repository": "https://github.com/nodecg/nodecg.git",
   "license": "MIT",
   "dependencies": {
-    "nodecg-utility-obs": "^4.1.2"
+    "obs-websocket-js": "^1.1.0"
   }
 }
