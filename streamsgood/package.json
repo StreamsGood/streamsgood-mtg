@@ -27,12 +27,6 @@
         "headerColor": "#9f9bbd"
       },
       {
-        "name": "obs",
-        "title": "OBS",
-        "width": 2,
-        "file": "obs.html"
-      },
-      {
         "name": "tablet",
         "title": "Tablet",
         "file": "tablet.html",
@@ -50,6 +44,5 @@
   "repository": "https://github.com/nodecg/nodecg.git",
   "license": "MIT",
   "dependencies": {
-    "obs-websocket-js": "^1.1.0"
   }
 }

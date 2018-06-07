@@ -232,7 +232,12 @@
 		let iter = 0;
 
 		setInterval(() => {
-			centerSub.textContent = iter % 2 ? `${domBind.p1.games} - ${domBind.p2.games}` : `${domBind.eventRound}`;
+			if (domBind.eventRound) {
+				centerSub.textContent = iter % 2 ? `${domBind.p1.games} - ${domBind.p2.games}` : `${domBind.eventRound}`;
+			} else {
+				centerSub.textContent = `${domBind.p1.games} - ${domBind.p2.games}`;
+			}
+
 			iter += 1;
 		}, 6000);
 	});

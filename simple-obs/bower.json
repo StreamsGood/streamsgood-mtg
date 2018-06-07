@@ -1,0 +1,23 @@
+{
+  "name": "simple-obs",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Brendan Hagan <bhaganksu@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/StreamsGood/streamsgood-mtg",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "webcomponentsjs": "^1.1.0",
+    "nodecg-replicant": "NodeCGElements/nodecg-replicant#^1.0.1",
+    "iron-flex-layout": "^2.0.3",
+    "polymer": "^2.5.0"
+  }
+}

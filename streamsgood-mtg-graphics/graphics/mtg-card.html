@@ -20,6 +20,13 @@
 				font-size: 5vh
 			}
 
+			#price {
+				font-family: 'Bebas Neue Bold';
+				color: #F0EAEC;
+				font-size: 3.5vh;
+				text-align: center;
+			}
+
 			body {
 				margin: 0;
 				width: 100vw;
@@ -53,11 +60,16 @@
 	<dom-bind id="dom-bind">
 		<template>
 			<div id="container" class="layout vertical center-justified">
-				<img id="card" src="[[selected.card_faces.0.image_uris.png]]">
+				<img id="card" src="[[_selectedCardImage(selected, cardFace)]]">
 				<!-- <div id="event">[[eventName]]</div> -->
+				<div id="price">[[_priceDescriptor(selected)]]</div>
 			</div>
 
+			<img id="hovered-preload" src="[[selected.card_faces.0.image_uris.png]]" style="opacity: 0;">
+
 			<debounce-replicant replicant-name="selected" replicant-bundle="nodecg-scryfall" value="{{selected}}" wait="0"></debounce-replicant>
+			<debounce-replicant replicant-name="selected-card-face" replicant-bundle="nodecg-scryfall" value="{{cardFace}}" wait="0"></debounce-replicant>
+			<debounce-replicant replicant-name="hovered" replicant-bundle="nodecg-scryfall" value="{{hovered}}" wait="0"></debounce-replicant>
 			<!-- <debounce-replicant replicant-name="event.name" replicant-bundle="streamsgood" value="{{eventName}}" wait="500"></debounce-replicant> -->
 		</template>
 	</dom-bind>
@@ -77,6 +89,21 @@
 						}
 					}
 				]
+			};
+
+			domBind.cardFace = -1;
+
+			domBind._selectedCardImage = (selected, cardFace) => {
+				return selected.card_faces[cardFace] ? selected.card_faces[cardFace].image_uris.png : selected.card_faces[0].image_uris.png;
+			};
+
+			domBind._priceDescriptor = (selected) => {
+				let descriptor = `${selected.set}`;
+				if (selected.usd) {
+					descriptor += ` | TCG-Mid: $${selected.usd}`;
+				}
+
+				return descriptor;
 			};
 
 			hovered.on('change', (newValue, oldValue) => {
