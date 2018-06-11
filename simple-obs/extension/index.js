@@ -2,6 +2,9 @@ const OBSWebSocket = require('obs-websocket-js');
 
 const obs = new OBSWebSocket();
 
+const MAX_RETRIES = 5;
+let numberOfConnectionAttempts = 0;
+
 module.exports = nodecg => {
 	const scenes = nodecg.Replicant('obs:scenes', undefined, {
 		defaultValue: { scenes: [] },
@@ -18,17 +21,15 @@ module.exports = nodecg => {
 		persistent: false
 	});
 
-	let isConnecting = false;
+	const reconnecting = nodecg.Replicant('obs:reconnecting', undefined, {
+		defaultValue: false,
+		persistent: false
+	});
 
-	async function connect(retries = 0) {
-		if (retries > 19) {
-			nodecg.log.error(`Failed to (re)connect to OBS after ${retries} attempts.`);
-			isConnecting = false;
-			return;
-		}
-
+	async function connect(forced = false) {
 		connected.value = false;
-		isConnecting = true;
+		reconnecting.value = true;
+		numberOfConnectionAttempts += 1;
 
 		try {
 			await obs.connect({
@@ -36,13 +37,21 @@ module.exports = nodecg => {
 				password: nodecg.bundleConfig.password
 			});
 
-			nodecg.log.info(`Connected to OBS. (Attempt #${retries + 1})`);
+			nodecg.log.info(`Connected to OBS. (Attempt #${numberOfConnectionAttempts})`);
 			connected.value = true;
-			isConnecting = false;
+			reconnecting.value = false;
+			numberOfConnectionAttempts = 0;
 		} catch (e) {
-			nodecg.log.error(`Failed to (re)connect to OBS. (Attempt #${retries + 1})`);
+			nodecg.log.error(`Failed to (re)connect to OBS. (Attempt #${numberOfConnectionAttempts})`);
+
+			if (numberOfConnectionAttempts > MAX_RETRIES) {
+				nodecg.log.error(`Giving up on (re)connect to OBS. (Attempt #${numberOfConnectionAttempts})`);
+				reconnecting.value = false;
+				return;
+			}
+
 			setTimeout(() => {
-				connect(retries + 1);
+				connect();
 			}, 10000);
 		}
 	}
@@ -61,7 +70,9 @@ module.exports = nodecg => {
 	obs.on('SwitchScenes', fullUpdate);
 
 	obs.on('ConnectionClosed', () => {
-		if (!isConnecting) {
+		connected.value = false;
+
+		if (!reconnecting.value) {
 			connect();
 		}
 	});
@@ -79,7 +90,7 @@ module.exports = nodecg => {
 	});
 
 	nodecg.listenFor('obs:ManualConnect', async () => {
-		connect();
+		connect(true);
 	});
 
 	connect();

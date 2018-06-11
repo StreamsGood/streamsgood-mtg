@@ -43,7 +43,7 @@
 							0 0 0 1px rgba(0, 0, 0, 0.04);
 			}
 
-			.scene:hover {
+			.scene:hover, #connected:hover {
 				cursor: pointer;
 			}
 
@@ -60,7 +60,7 @@
 	<dom-bind id="dom-bind">
 		<template>
 			<div class="layout vertical center">
-				<div id="connected" class$="{{_connectedStatus(connected)}}">{{_connectedMessage(connected)}}</div>
+				<div id="connected" class$="{{_connectedStatus(connected)}}" on-click="manualConnect">{{_connectedMessage(connected, reconnecting)}}</div>
 				<template is="dom-repeat" items="{{scenes}}">
 					<div class$="scene {{_active(item, currentScene)}}" on-click="switchScenes">[[item.name]]</div>
 				</template>
@@ -69,6 +69,7 @@
 			<nodecg-replicant replicant-name="obs:scenes" value="{{scenes}}"></nodecg-replicant>
 			<nodecg-replicant replicant-name="obs:currentScene" value="{{currentScene}}"></nodecg-replicant>
 			<nodecg-replicant replicant-name="obs:connected" value="{{connected}}"></nodecg-replicant>
+			<nodecg-replicant replicant-name="obs:reconnecting" value="{{reconnecting}}"></nodecg-replicant>
 		</template>
 	</dom-bind>
 
@@ -85,13 +86,27 @@
 					return scene.name == currentScene ? 'active' : 'inactive';
 				};
 
-				domBind._connectedMessage = (connected) => {
-					return connected ? 'Connected' : 'Reconnecting...';
+				domBind._connectedMessage = (connected, reconnecting) => {
+					if (connected) {
+						return 'Connected';
+					}
+
+					if (reconnecting) {
+						return 'Reconnecting...';
+					}
+
+					return 'Connection Lost';
 				};
 
 				domBind._connectedStatus = (connected) => {
 					return connected ? 'connected' : 'disconnected';
 				}
+
+				domBind.manualConnect = () => {
+					if (!connected.value) {
+						nodecg.sendMessage('obs:ManualConnect');
+					}
+				};
 			});
 		})();
 	</script>

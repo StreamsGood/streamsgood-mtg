@@ -16,7 +16,7 @@ module.exports = nodecg => {
 	Object.keys(game).forEach(player => {
 		Object.keys(replicantDefaults).forEach(prop => {
 			game[player][prop] = nodecg.Replicant(`${player}-${prop}`, {
-				persistent: false,
+				persistent: true,
 				defaultValue: replicantDefaults[prop]
 			});
 		});
