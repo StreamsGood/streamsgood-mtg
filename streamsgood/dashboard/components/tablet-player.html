@@ -41,20 +41,45 @@
 			color: white;
 			opacity: 0.4;
 		}
+
+		.lifes {
+			border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+		}
+
+		/* .poison {
+			flex: unset;
+			width: 40%;
+			margin: 0 auto;
+			background: rgba(120, 240, 120, 0.25);
+			border-radius: 5%;
+		}
+		.games {
+			display: none;
+		} */
+
+		.labels {
+			height: 0;
+			overflow: visible;
+		}
+
+		.label {
+			position: relative;
+			top: -4.5vh;
+		}
 		</style>
 
 		<div class="content layout vertical justified">
 			<div class="name">{{player.name}}</div>
-			<div class="layout horizontal">
+			<div class="layout horizontal lifes">
 				<numeric-spinner class="life flex" value="{{player.life}}"></numeric-spinner>
 			</div>
-			<div class="layout horizontal">
-				<numeric-spinner class="poison flex" value="{{player.poison}}"></numeric-spinner>
-				<numeric-spinner class="games flex" value="{{player.games}}"></numeric-spinner>
+			<div class="layout horizontal extras">
+				<numeric-spinner class="poison flex spinner" value="{{player.poison}}"></numeric-spinner>
+				<numeric-spinner class="games flex spinner" value="{{player.games}}"></numeric-spinner>
 			</div>
-			<div class="layout horizontal">
-				<div class="label flex">Poison</div>
-				<div class="label flex">Games</div>
+			<div class="layout horizontal labels">
+				<div class="poison flex label">Poison</div>
+				<div class="games flex label">Games</div>
 			</div>
 		</div>
 	</template>
