@@ -13,7 +13,7 @@
     "ws": "^5.1.0"
   },
   "nodecg": {
-    "compatibleRange": ">=0.9",
+    "compatibleRange": ">=1.1.0",
     "dashboardPanels": [
       {
         "name": "obs",

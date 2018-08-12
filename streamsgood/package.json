@@ -17,14 +17,13 @@
     "nodecg-bundle"
   ],
   "nodecg": {
-    "compatibleRange": ">=0.9",
+    "compatibleRange": ">=1.1.0",
     "dashboardPanels": [
       {
         "name": "game",
         "title": "Game Info",
         "width": 4,
-        "file": "game.html",
-        "headerColor": "#9f9bbd"
+        "file": "game.html"
       },
       {
         "name": "tablet",
@@ -43,6 +42,5 @@
   },
   "repository": "https://github.com/nodecg/nodecg.git",
   "license": "MIT",
-  "dependencies": {
-  }
+  "dependencies": {}
 }

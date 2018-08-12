@@ -5,22 +5,34 @@
 	<link rel="import" href="/bundles/streamsgood/bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 	<script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
+	<link rel="import" href="/dashboard/css/nodecg-theme.html">
+
 	<link rel="import" href="../bower_components/nodecg-replicant/nodecg-replicant.html">
 
 	<link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-area.html">
 	<link rel="import" href="../bower_components/vaadin-material-theme/vaadin-text-area.html">
 
 	<custom-style>
-		<style include="iron-flex iron-flex-alignment"></style>
-	</custom-style>
+		<style include="nodecg-theme iron-flex iron-flex-alignment">
+			html {
+				--material-body-text-color: white;
+				--material-secondary-text-color: white;
+				--material-disabled-text-color: white;
+				--material-background-color: #2F3A4F;
+				---material-button-raised-background-color: var(--nodecg-configure-color);
 
-	<style>
-		vaadin-text-area {
-			width: 100%;
-			padding-top: 8px;
-			margin-bottom: 2px;
-		}
-	</style>
+				--material-divider-color: #00bebe;
+				--material-primary-color: #00bebe;
+				--nodecg-brand-blue-dark: #004949;
+			}
+
+			vaadin-text-area {
+				width: 100%;
+				padding-top: 8px;
+				margin-bottom: 2px;
+			}
+		</style>
+	</custom-style>
 </head>
 <body>
 	<dom-bind id="dom-bind"><template>

@@ -5,6 +5,8 @@
 	<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 	<script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
+	<link rel="import" href="/dashboard/css/nodecg-theme.html">
+
 	<link rel="import" href="../bower_components/nodecg-replicant/nodecg-replicant.html">
 
 	<link rel="import" href="../bower_components/nodecg-vaadin-text-field/nodecg-vaadin-text-field.html">
@@ -23,71 +25,86 @@
 	<link rel="import" href="components/good-counter.html">
 
 	<custom-style>
-		<style include="iron-flex iron-flex-alignment"></style>
+		<style include="nodecg-theme iron-flex iron-flex-alignment">
+			html {
+				--material-body-text-color: white;
+				--material-secondary-text-color: #00bebe;
+				--material-disabled-text-color: white;
+				--material-background-color: #2F3A4F;
+				---material-button-raised-background-color: var(--nodecg-configure-color);
+
+				--material-divider-color: #00bebe;
+				--material-primary-color: #00bebe;
+				--nodecg-brand-blue-dark: #004949;
+			}
+
+			good-counter input {
+				color: var(--material-body-text-color);
+			}
+
+			body {
+				margin-top: 5px;
+			}
+
+			.flex + .flex {
+				padding-left: 0.75em;
+			}
+
+			.name, .deck {
+				flex: 3 0px;
+			}
+
+			.options {
+				padding-top: 1em;
+			}
+
+			nodecg-vaadin-text-field {
+				padding-top: 8px;
+				margin-bottom: 2px;
+			}
+
+			.life-buttons {
+				padding-top: 1em;
+			}
+
+			.life-buttons vaadin-button {
+				height: 2em;
+				font-size: 2em;
+				line-height: 0;
+				flex: 1 1 auto;
+			}
+
+			vaadin-button {
+				min-width: unset;
+			}
+
+			nodecg-vaadin-text-field {
+				width: unset;
+			}
+
+			.life good-counter {
+				height: 80px;
+				font-size: 75px;
+			}
+
+			.other-numerics {
+				margin-top: 15px;
+			}
+
+			.other-numerics label {
+				transform-origin: 0 75%;
+				transform: scale(0.75);
+				color: rgba(255, 255, 255, 0.54);
+				color: var(--material-secondary-text-color);
+				margin-bottom: .2em;
+			}
+
+			.other-numerics good-counter {
+				height: 50px;
+				font-size: 45px;
+			}
+		</style>
 	</custom-style>
-
-	<style>
-		body {
-			margin-top: 5px;
-		}
-
-		.flex + .flex {
-			padding-left: 0.75em;
-		}
-
-		.name, .deck {
-			flex: 3 0px;
-		}
-
-		.options {
-			padding-top: 1em;
-		}
-
-		nodecg-vaadin-text-field {
-			padding-top: 8px;
-			margin-bottom: 2px;
-		}
-
-		.life-buttons {
-			padding-top: 1em;
-		}
-
-		.life-buttons vaadin-button {
-			height: 2em;
-			font-size: 2em;
-			line-height: 0;
-			flex: 1 1 auto;
-		}
-
-		vaadin-button {
-			min-width: unset;
-		}
-
-		nodecg-vaadin-text-field {
-			width: unset;
-		}
-
-		.life good-counter {
-			height: 80px;
-			font-size: 75px;
-		}
-
-		.other-numerics {
-			margin-top: 15px;
-		}
-
-		.other-numerics label {
-			transform-origin: 0 75%;
-			transform: scale(0.75);
-			color: rgba(0, 0, 0, 0.54);
-			margin-bottom: .2em;
-		}
-
-		.other-numerics good-counter {
-			height: 50px;
-			font-size: 45px;
-		}
-	</style>
 </head>
 <body>
 	<dom-bind id="dom-bind"><template>

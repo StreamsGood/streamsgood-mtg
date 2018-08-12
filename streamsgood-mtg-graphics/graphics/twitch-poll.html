@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+	<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+	<link rel="import" href="../bower_components/debounce-replicant/debounce-replicant.html">
+	<link rel="stylesheet" href="assets/css/common.css">
+
+	<custom-style>
+		<style include="iron-flex iron-flex-alignment iron-flex-factors">
+			body {
+				margin: 0;
+				background: #292b2e;
+
+				width: 100vw;
+				height: 100vh;
+
+				overflow: hidden;
+			}
+
+			#container {
+				vertical-align: middle;
+				align-items: center;
+				justify-content: center;
+
+				width: 100%;
+				height: 90%;
+			}
+
+			#event {
+				font-size: 16vh;
+			}
+
+			#message {
+				white-space: pre;
+				font-size: 14vh;
+				line-height: 12vh;
+				text-align: center;
+			}
+
+			#timestamp {
+				font-size: 7vh;
+				text-align: center;
+
+				margin-right: 2vw;
+				color: #989E90;
+			}
+
+			.results {
+				/* display: grid; */
+				/* grid-template-columns: repeat(2, 1fr); */
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+			}
+			.results > div {
+				flex: 1 1 50%;
+				width: 50%;
+			}
+
+			.result {
+				font-size: 4em;
+				/* min-height: 100%; */
+				/* min-width: 100%; */
+				max-height: 200px;
+				height: 200px;
+			}
+
+			.vote-details {
+				vertical-align: middle;
+				width: 150px;
+				background-color: #bb7c3e;
+				border: 1px solid #bb7c3e;
+				height: 100%;
+			}
+
+			.key {
+				font-size: 200%;
+			}
+
+			.votes {
+				margin-top: -25px;
+				font-size: 75%;
+				font-family: 'Bebas Neue Light';
+			}
+
+			.vote-desc {
+				white-space: pre;
+				text-align: center;
+				margin: 0 auto;
+				font-size: 80%;
+				font-family: 'Bebas Neue Regular';
+				border: 1px solid #bb7c3e;
+				box-sizing: border-box;
+				width: 100%;
+				height: 100%;
+			}
+
+			#instructions {
+				font-size: 7vh;
+				margin-left: 2vw;
+			}
+
+			.highlight {
+				color: #bb7c3e;
+				font-family: 'Bebas Neue Regular';
+				padding: 0 0.5em;
+			}
+		</style>
+	</custom-style>
+</head>
+<body>
+	<dom-bind id="dom-bind">
+		<template>
+			<div id="container" class="results">
+				<!-- <div id="message">[[message]]</div> -->
+				<template is="dom-repeat" items="{{_toArray(pollResults)}}" mutable-data>
+					<div class="result layout horizontal center">
+						<div class="vote-details layout vertical center">
+							<div class="key">[[item.key]]</div>
+							<div class="votes">[[_percentage(item.votes)]]</div>
+						</div>
+						<div class="vote-desc layout vertical center">
+							<div class="vote-description">[[item.display]]</div>
+						</div>
+					</div>
+				</template>
+			</div>
+			<div class="layout vertical center-center">
+				<div class="layout horizontal" style="width: 100%; justify-content: space-between;">
+					<div id="instructions" class="self-stretch">Type <span class="highlight">!vote</span> in the chat to vote!</div>
+					<div id="timestamp" class="self-end">[[timestamp]]</div>
+				</div>
+			</div>
+		</template>
+	</dom-bind>
+	<script>
+	(function() {
+		window.addEventListener('WebComponentsReady', function() {
+			let domBind = document.querySelector('#dom-bind');
+
+			domBind.pollResults = {};
+
+			domBind.updateTimestamp = () => {
+				domBind.timestamp = new Date().toLocaleString('en-US', {
+					month: "short",
+					day: "numeric",
+					hour: "2-digit",
+					minute: "2-digit",
+					second: "2-digit",
+					timeZoneName: "short"
+				});
+			};
+
+			domBind._toArray = (obj) => {
+				if (!obj) {
+					return [];
+				}
+
+				return Object.keys(obj).map(key => {
+					return {
+						key: key,
+						...obj[key]
+					};
+				});
+			};
+
+			domBind._percentage = (votes) => {
+				console.log(votes, domBind.pollResults);
+				if (!(domBind.pollResults)) { return '0%'; }
+
+				const total = Object.entries(domBind.pollResults).map(item => item[1].votes).reduce((p, n) => p + n);
+				if (total === 0) {
+					return '0%';
+				}
+
+				return `${Number(votes / total * 100).toFixed(0)}%`
+			};
+
+			nodecg.Replicant('poll-results', 'nodecg-twitch-poll').on('change', (newValue) => {
+				domBind.pollResults = {...newValue};
+			});
+
+			setInterval(() => { domBind.updateTimestamp(); }, 1000);
+			domBind.updateTimestamp();
+		});
+	})();
+	</script>
+</body>
+</html>
