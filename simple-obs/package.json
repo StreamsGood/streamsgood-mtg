@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "file-icons-js": "github:websemantics/file-icons-js",
     "obs-websocket-js": "^1.2.0",
     "ws": "^5.1.0"
   },
@@ -20,6 +21,13 @@
         "title": "OBS",
         "width": 2,
         "file": "obs.html"
+      },
+      {
+        "name": "file-select",
+        "title": "File Select",
+        "width": 3,
+        "file": "file-select.html",
+        "workspace": "Reruns"
       }
     ]
   }

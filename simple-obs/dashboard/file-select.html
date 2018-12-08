@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="import" href="/bundles/streamsgood/bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+  <script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+
+  <script src="../node_modules/file-icons-js/index.js"></script>
+  <link rel="stylesheet" href="../node_modules/file-icons-js/css/style.css">
+
+	<link rel="import" href="/dashboard/css/nodecg-theme.html">
+
+	<link rel="import" href="../bower_components/nodecg-replicant/nodecg-replicant.html">
+
+	<custom-style>
+		<style include="nodecg-theme iron-flex iron-flex-alignment">
+			html {
+				--material-body-text-color: white;
+				--material-secondary-text-color: #00bebe;
+				--material-disabled-text-color: white;
+				--material-background-color: #2F3A4F;
+
+				--material-divider-color: #00bebe;
+				--material-primary-color: #00bebe;
+				--nodecg-brand-blue-dark: #004949;
+
+        font-size: 14px;
+			}
+
+      .active-file {
+        margin-bottom: 15px;
+      }
+
+      ol#items {
+        list-style: none;
+        padding-inline-start: 0px;
+        max-height: 300px;
+        overflow-y: scroll;
+      }
+
+      .item {
+        padding-top: 0.25em;
+        padding-bottom: 0.25em;
+      }
+
+      .item:before {
+        padding: 10px;
+      }
+
+      .child:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .item.selected {
+        background-color: var(--nodecg-brand-blue) !important;
+      }
+
+      .parent:before {
+        padding: 10px 10px 10px 0;
+        content: '';
+      }
+		</style>
+	</custom-style>
+
+	<style>
+	</style>
+</head>
+<body>
+	<dom-bind id="dom-bind">
+		<template>
+			<div class="layout vertical left">
+        <div class="active-file">{{selectedFile}}</div>
+        <ol id="items">
+          <li class="item parent">{{fileDirectory}}</li>
+          <template is="dom-repeat" items="{{fileList}}">
+            <li class$="item child {{_icon(item)}} {{_isDirectory(item)}} {{_selected(item, selectedFile)}}" on-click="traverse">[[item.name]]</li>
+          </template>
+        </ol>
+			</div>
+
+			<nodecg-replicant replicant-name="selected-file" value="{{selectedFile}}"></nodecg-replicant>
+			<nodecg-replicant replicant-name="file-list" value="{{fileList}}"></nodecg-replicant>
+			<nodecg-replicant replicant-name="file-directory" value="{{fileDirectory}}"></nodecg-replicant>
+		</template>
+	</dom-bind>
+
+	<script>
+		(function() {
+			window.addEventListener('WebComponentsReady', function() {
+        let domBind = document.querySelector('#dom-bind');
+
+				domBind.traverse = e => {
+          const file = e.model.item;
+
+          if (file.isDirectory) {
+            nodecg.sendMessage('traverse-directory', file.name);
+          } else {
+            nodecg.sendMessage('select-file', file.path);
+            domBind.selectedFile = file.path;
+          }
+        };
+
+        domBind._icon = file => {
+          if (file.isDirectory) {
+            return 'book-icon dark-blue';
+          } else {
+            const icon = window.FileIcons.getClassWithColor(file.name);
+            if (!icon) {
+              return 'binary-icon dark-green';
+            }
+            return icon;
+          }
+        };
+
+        domBind._isDirectory = file => {
+          return file.isDirectory ? 'directory' : 'file';
+        };
+
+        domBind._selected = (file, selectedFile) => {
+          if (file.path === selectedFile) {
+            return 'selected';
+          }
+
+          return '';
+        }
+			});
+		})();
+	</script>
+</body>
+</html>

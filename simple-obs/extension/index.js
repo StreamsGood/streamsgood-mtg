@@ -6,6 +6,8 @@ const MAX_RETRIES = 5;
 let numberOfConnectionAttempts = 0;
 
 module.exports = nodecg => {
+  require('./file-select.js')(nodecg, obs);
+
 	const scenes = nodecg.Replicant('obs:scenes', undefined, {
 		defaultValue: { scenes: [] },
 		persistent: false

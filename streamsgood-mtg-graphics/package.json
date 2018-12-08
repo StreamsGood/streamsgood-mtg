@@ -30,6 +30,11 @@
         "file": "twitch-poll.html",
         "width": 1920,
         "height": 1080
+      },
+      {
+        "file": "rerun.html",
+        "width": 1920,
+        "height": 1080
       }
     ]
   },
