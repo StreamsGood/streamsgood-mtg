@@ -12,7 +12,7 @@
 		<style include="iron-flex iron-flex-alignment iron-flex-factors">
 			body {
 				margin: 0;
-				background: #292b2e;
+				background: var(--color-background-primary);
 
 				width: 100vw;
 				height: 100vh;
@@ -45,7 +45,7 @@
 				text-align: center;
 
 				margin-right: 2vw;
-				color: #989E90;
+				color: var(--color-accent-secondary);
 			}
 
 			.results {
@@ -61,20 +61,35 @@
 			}
 
 			.result {
-				font-size: 4em;
+				/* font-size: 4em; */
+        font-size: 9vh;
 				/* min-height: 100%; */
 				/* min-width: 100%; */
-				max-height: 200px;
-				height: 200px;
+				/* max-height: 200px; */
+        max-height: 35%;
+				/* height: 200px; */
+        height: 100%;
+        border: 1px solid var(--color-accent-primary);
+        box-sizing: border-box;
+        max-width: 50%;
 			}
 
 			.vote-details {
-				vertical-align: middle;
+				/* vertical-align: middle; */
 				width: 150px;
-				background-color: #bb7c3e;
-				border: 1px solid #bb7c3e;
-				height: 100%;
+				background-color: var(--color-accent-primary);
+				/* border: 1px solid var(--color-accent-primary); */
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 100%;
 			}
+
+      .vote-amount {
+
+      }
 
 			.key {
 				font-size: 200%;
@@ -87,15 +102,16 @@
 			}
 
 			.vote-desc {
-				white-space: pre;
-				text-align: center;
 				margin: 0 auto;
-				font-size: 80%;
+				/* font-size: 80%; */
 				font-family: 'Bebas Neue Regular';
-				border: 1px solid #bb7c3e;
+				/* border: 1px solid var(--color-accent-primary); */
 				box-sizing: border-box;
 				width: 100%;
 				height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 			}
 
 			#instructions {
@@ -104,7 +120,7 @@
 			}
 
 			.highlight {
-				color: #bb7c3e;
+				color: var(--color-accent-primary);
 				font-family: 'Bebas Neue Regular';
 				padding: 0 0.5em;
 			}
@@ -119,8 +135,10 @@
 				<template is="dom-repeat" items="{{_toArray(pollResults)}}" mutable-data>
 					<div class="result layout horizontal center">
 						<div class="vote-details layout vertical center">
-							<div class="key">[[item.key]]</div>
-							<div class="votes">[[_percentage(item.votes)]]</div>
+              <div class="vote-amount">
+                <div class="key">[[item.key]]</div>
+                <div class="votes">[[_percentage(item.votes)]]</div>
+              </div>
 						</div>
 						<div class="vote-desc layout vertical center">
 							<div class="vote-description">[[item.display]]</div>
@@ -130,7 +148,7 @@
 			</div>
 			<div class="layout vertical center-center">
 				<div class="layout horizontal" style="width: 100%; justify-content: space-between;">
-					<div id="instructions" class="self-stretch">Type <span class="highlight">!vote</span> in the chat to vote!</div>
+					<div id="instructions" class="self-stretch">Type <span class="highlight">!vote #</span> in the chat to vote</div>
 					<div id="timestamp" class="self-end">[[timestamp]]</div>
 				</div>
 			</div>

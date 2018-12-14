@@ -11,12 +11,11 @@
 	<custom-style>
 		<style include="iron-flex iron-flex-alignment iron-flex-factors">
 			.top-bar {
-				background: #292b2e; /*#3d3d3d;*/
+				background: var(--color-background-primary); /*#3d3d3d;*/
 				font-family: 'Bebas Neue Bold';
-				/* color: #f0eabc; */
-				color: #F0EAEC;
+        color: var(--color-text-primary);
 
-				border-bottom: 0.5vh #bb7c3e solid;
+        border-bottom: 0.5vh var(--color-accent-primary) solid;
 			}
 
 			.life {
@@ -26,12 +25,12 @@
 			}
 
 			.left .life {
-  				background-image: -webkit-linear-gradient(18deg, #bb7c3e 79.65%, transparent 80%);
+  			background-image: -webkit-linear-gradient(18deg, var(--color-accent-primary) 79.65%, transparent 80%);
 				padding-left: 0;
 			}
 
 			.right .life {
-				background-image: -webkit-linear-gradient(162deg, #bb7c3e 79.65%, transparent 80%);
+				background-image: -webkit-linear-gradient(162deg, var(--color-accent-primary) 79.65%, transparent 80%);
 				padding-right: 0;
 			}
 
@@ -41,8 +40,8 @@
 				margin: 0 1vw;
 
 				background:
-					linear-gradient(-72deg, transparent 14.65%, #bb7c3e 15%, #bb7c3e 70%, transparent 70%),
-					linear-gradient(72deg, transparent 14.65%, #bb7c3e 15%, #bb7c3e 70%, transparent 70%);
+					linear-gradient(-72deg, transparent 14.65%, var(--color-accent-primary) 15%, var(--color-accent-primary) 70%, transparent 70%),
+					linear-gradient(72deg, transparent 14.65%, var(--color-accent-primary) 15%, var(--color-accent-primary) 70%, transparent 70%);
 			}
 
 			.left.about {
@@ -64,13 +63,13 @@
 				/* color: #e7d7c6; */
 				/* color: #F6E0BC; */
 				/* color: #73786d; */
-				color: #989E90;
+				color: var(--color-accent-secondary);
 			}
 
 			.deck {
 				/* color: #5e6259; */
 				/* color: #73786D; */
-				color: #D1A770;
+				color: var(--color-accent-tertiary);
 			}
 
 			.left .record:not(:empty) {
@@ -95,17 +94,7 @@
 
 			#center-sub {
 				overflow: hidden;
-			}
-
-			/* .round {
-				font-family: 'Bebas Neue Light';
-				color: #F0EAEC;
-				font-size: 2.5vh;
-				padding: 0 2.5vw;
-				background: #292b2e;
-				border: 0.5vh #bb7c3e solid;
-				border-top: 0;
-			} */
+      }
 
 			.poison {
 				position: absolute;
@@ -146,8 +135,8 @@
 				font-size: 3vh;
 				padding: 0.75vh 1.5vw 0.75vh 0.75vw;
 
-				/* background-image: -webkit-linear-gradient(18deg, #bb7c3e 79.65%, transparent 80%); */
-				background-image: -webkit-linear-gradient(18deg, #bb7c3e calc(100% - 20px), transparent calc(100% - 19px));
+				/* background-image: -webkit-linear-gradient(18deg, var(--color-accent-primary) 79.65%, transparent 80%); */
+				background-image: -webkit-linear-gradient(18deg, var(--color-accent-primary) calc(100% - 20px), transparent calc(100% - 19px));
 			}
 		</style>
 	</custom-style>

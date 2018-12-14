@@ -5,7 +5,8 @@
 	<script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 	<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
-	<link rel="import" href="../bower_components/debounce-replicant/debounce-replicant.html">
+  <link rel="import" href="../bower_components/debounce-replicant/debounce-replicant.html">
+  <link rel="stylesheet" href="assets/css/common.css">
 
 	<custom-style>
 		<style include="iron-flex iron-flex-alignment iron-flex-factors">
@@ -16,13 +17,13 @@
 
 			#event {
 				font-family: 'Bebas Neue Bold';
-				color: #F0EAEC;
+				color: var(--color-text-primary);
 				font-size: 5vh
 			}
 
 			#price {
 				font-family: 'Bebas Neue Bold';
-				color: #F0EAEC;
+				color: var(--color-text-primary);
 				font-size: 3.5vh;
 				text-align: center;
 			}
@@ -40,10 +41,10 @@
 				background: black;
 				float: right;
 
-				background: #292b2e;
-				background-image: -webkit-linear-gradient(162deg, #bb7c3e 39.65%, transparent 40%);
+				background: var(--color-background-primary);
+				background-image: -webkit-linear-gradient(162deg, var(--color-accent-primary) 39.65%, transparent 40%);
 
-				border-left: 0.5vh #bb7c3e solid;
+				border-left: 0.5vh var(--color-accent-primary) solid;
 			}
 
 			#card {
