@@ -14,7 +14,7 @@
 }
 
 /* Tusk Theme */
-/* body {
+body {
   --color-background-primary: #292b2e;
   --color-background-secondary: #292b2e;
   --color-text-primary: #F0EAEC;
@@ -22,10 +22,10 @@
   --color-accent-primary: #bb7c3e;
   --color-accent-secondary: #989E90;
   --color-accent-tertiary: #D1A770;
-} */
+}
 
 /* Wincon Theme */
-body {
+/* body {
   --color-background-primary: #292b2e;
   --color-background-secondary: #292b2e;
   --color-text-primary: rgb(240, 240, 240);
@@ -33,7 +33,7 @@ body {
   --color-accent-primary: #0c5dc6;
   --color-accent-secondary: rgb(156, 156, 156);
   --color-accent-tertiary: #5e8fce;
-}
+} */
 
 body {
 	margin: 0;

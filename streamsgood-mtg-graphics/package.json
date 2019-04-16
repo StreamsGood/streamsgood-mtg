@@ -12,6 +12,11 @@
     "compatibleRange": ">=1.1.0",
     "graphics": [
       {
+        "file": "about-hyper.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
         "file": "mtg-score.html",
         "width": 1920,
         "height": 1080

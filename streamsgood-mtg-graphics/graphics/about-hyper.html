@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+	<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+	<link rel="stylesheet" href="assets/css/common.css">
+
+	<custom-style>
+		<style include="iron-flex iron-flex-alignment iron-flex-factors">
+			body {
+				margin: 0;
+				background: var(--color-background-primary);
+
+				width: 100vw;
+				height: 100vh;
+
+				overflow: hidden;
+      }
+
+      #main {
+        width: 100%;
+      }
+
+      #header {
+        text-align: right;
+        position: absolute;
+        right: 8%;
+      }
+
+      #header > h1 {
+        color: var(--color-accent-primary);
+        font-size: 7em;
+        margin: 0;
+      }
+
+      #header > p {
+        margin: 0;
+        margin-top: -0.5em;
+        font-size: 2.5em;
+        font-family: 'Courier New', Courier, monospace;
+      }
+
+			#container {
+				align-items: flex-start;
+
+				width: 90%;
+        height: 90%;
+        margin: 5%;
+      }
+
+      #content {
+        margin-top: -0.5em;
+        font-size: 1.8em;
+        font-family: 'Courier New', Courier, monospace;
+      }
+
+      #content ol {
+        list-style-type: initial;
+      }
+
+      #content .about {
+        margin-right: 37%;
+        margin-left: 3%;
+      }
+
+      #content .restricted {
+        margin-top: 4%;
+      }
+
+      #content #restricted-images {
+        max-width: 100%;
+        height: 575px;
+        /* overflow: hidden; */
+        transform: translate3d(0, 0, 0);
+      }
+
+      #content #restricted-images .slide {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateX(2100px);
+        animation: slideTransition 35s ease-in-out infinite;
+        /* animation: slideTransition 35s cubic-bezier(0.03, 0.1, 0.1, 0.97) infinite; */
+        z-index: 6;
+      }
+
+      #content #restricted-images .slide img {
+        display: flex;
+      }
+
+      #content #restricted-images .slide:nth-of-type(2) {
+        z-index: 5;
+        animation-delay: 7s;
+      }
+      #content #restricted-images .slide:nth-of-type(3) {
+        z-index: 4;
+        animation-delay: 14s;
+      }
+      #content #restricted-images .slide:nth-of-type(4) {
+        z-index: 3;
+        animation-delay: 21s;
+      }
+      #content #restricted-images .slide:nth-of-type(5) {
+        z-index: 2;
+        animation-delay: 28s;
+      }
+
+      @keyframes slideTransition {
+        3% { transform: translateX( 0 ); }
+        20% { transform: translateX( 0 ); }
+        23% { transform: translateX( -2100px ); }
+        100% { transform: translateX( -2100px ); }
+      }
+
+      #content #restricted-images img {
+        height: 575px;
+      }
+		</style>
+	</custom-style>
+</head>
+<body>
+  <div id="container" class="layout vertical left-center">
+    <div id="main" class="layout vertical left-center">
+      <div id="header">
+        <h1>Hyper Extended</h1>
+        <p>hextended.com</p>
+      </div>
+
+      <div id="content">
+        <div class="about">
+            <p>
+              Hyper Extended is a variant format comprised of the black bordered sets from <b>Fallen Empires</b> through <b>Scourge</b>.
+            </p>
+            <ol>
+              <li>Ante cards are banned.</li>
+              <li>Mana Burn is in effect.</li>
+              <li>Wishes may retrieve cards from exile.</li>
+              <li>Gold-Bordered cards are permitted, if otherwise legal.</li>
+            </ol>
+            <p>Hyper Extended features a 20 card Restricted List.</p>
+        </div>
+        <div class="restricted">
+          <div id="restricted-images">
+            <div class="slide">
+              <img src="https://img.scryfall.com/cards/png/en/tmp/315.png">
+              <img src="https://img.scryfall.com/cards/png/en/mmq/61.png">
+              <img src="https://img.scryfall.com/cards/png/en/jud/83.png">
+              <img src="https://img.scryfall.com/cards/png/en/ice/121.png">
+            </div>
+            <div class="slide">
+              <img src="https://img.scryfall.com/cards/png/en/sth/28.png">
+              <img src="https://img.scryfall.com/cards/png/en/tmp/222.png">
+              <img src="https://img.scryfall.com/cards/png/en/mir/14.png">
+              <img src="https://img.scryfall.com/cards/png/en/ulg/32.png">
+            </div>
+            <div class="slide">
+              <img src="https://img.scryfall.com/cards/png/en/vis/80.png">
+              <img src="https://img.scryfall.com/cards/png/en/sth/108.png">
+              <img src="https://img.scryfall.com/cards/png/en/ulg/129.png">
+              <img src="https://img.scryfall.com/cards/png/en/scg/41.png">
+            </div>
+            <div class="slide">
+              <img src="https://img.scryfall.com/cards/png/en/mir/80.png">
+              <img src="https://img.scryfall.com/cards/png/en/ice/154.png">
+              <img src="https://img.scryfall.com/cards/png/en/ulg/45.png">
+              <img src="https://img.scryfall.com/cards/png/en/usg/330.png">
+            </div>
+            <div class="slide">
+              <img src="https://img.scryfall.com/cards/png/en/vis/72.png">
+              <img src="https://img.scryfall.com/cards/png/en/usg/111.png">
+              <img src="https://img.scryfall.com/cards/png/en/uds/75.png">
+              <img src="https://img.scryfall.com/cards/png/en/usg/171.png">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+  </script>
+</body>
+</html>
