@@ -7,7 +7,7 @@
 
 	<link rel="import" href="/dashboard/css/nodecg-theme.html">
 
-	<link rel="import" href="../bower_components/nodecg-replicant/nodecg-replicant.html">
+  <link rel="import" href="../bower_components/debounce-replicant/debounce-replicant.html">
 
 	<link rel="import" href="../bower_components/nodecg-vaadin-text-field/nodecg-vaadin-text-field.html">
 	<link rel="import" href="../bower_components/nodecg-vaadin-checkbox/nodecg-vaadin-checkbox.html">
@@ -170,13 +170,13 @@
 		<nodecg-vaadin-text-field class="flex" label="Commentator #2" replicant-name="commentator2"></nodecg-vaadin-text-field>
 	</div> -->
 
-	<nodecg-replicant replicant-name="p1-life" value="{{p1-life}}"></nodecg-replicant>
-	<nodecg-replicant replicant-name="p1-poison" value="{{p1-poison}}"></nodecg-replicant>
-	<nodecg-replicant replicant-name="p1-games" value="{{p1-games}}"></nodecg-replicant>
+  <debounce-replicant replicant-name="p1-life" value="{{p1-life}}" wait="500"></debounce-replicant>
+	<debounce-replicant replicant-name="p1-poison" value="{{p1-poison}}" wait="500"></debounce-replicant>
+	<debounce-replicant replicant-name="p1-games" value="{{p1-games}}" wait="500"></debounce-replicant>
 
-	<nodecg-replicant replicant-name="p2-life" value="{{p2-life}}"></nodecg-replicant>
-	<nodecg-replicant replicant-name="p2-poison" value="{{p2-poison}}"></nodecg-replicant>
-	<nodecg-replicant replicant-name="p2-games" value="{{p2-games}}"></nodecg-replicant>
+	<debounce-replicant replicant-name="p2-life" value="{{p2-life}}" wait="500"></debounce-replicant>
+	<debounce-replicant replicant-name="p2-poison" value="{{p2-poison}}" wait="500"></debounce-replicant>
+	<debounce-replicant replicant-name="p2-games" value="{{p2-games}}" wait="500"></debounce-replicant>
 </template>
 </dom-bind>
 </body>

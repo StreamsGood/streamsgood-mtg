@@ -10,7 +10,8 @@
     "nodecg-vaadin-text-field": "StreamsGood/nodecg-vaadin-text-field#^1.0.0",
     "webcomponentsjs": "^1.1.0",
     "components-font-awesome": "^4.7.0",
-	"nodecg-replicant": "NodeCGElements/nodecg-replicant#^1.0.1"
+    "nodecg-replicant": "NodeCGElements/nodecg-replicant#^1.0.1",
+    "debounce-replicant": "StreamsGood/debounce-replicant#^2.0.0"
   },
   "resolutions": {
     "vaadin-control-state-mixin": "^2.0.0"

@@ -7,7 +7,7 @@
 
 	<link rel="import" href="/dashboard/css/nodecg-theme.html">
 
-	<link rel="import" href="../bower_components/nodecg-replicant/nodecg-replicant.html">
+	<link rel="import" href="../bower_components/debounce-replicant/debounce-replicant.html">
 
 	<link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-area.html">
 	<link rel="import" href="../bower_components/vaadin-material-theme/vaadin-text-area.html">
@@ -40,7 +40,7 @@
 		<vaadin-text-area label="Away Message" value="{{message}}"></vaadin-text-area>
 	</div>
 
-	<nodecg-replicant replicant-name="message" value="{{message}}"></nodecg-replicant>
+	<debounce-replicant replicant-name="message" value="{{message}}" wait="500"></debounce-replicant>
 	</template></dom-bind>
 </body>
 </html>

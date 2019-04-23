@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.css">
 
 	<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-	<link rel="import" href="../bower_components/nodecg-replicant/nodecg-replicant.html">
+  <link rel="import" href="../bower_components/debounce-replicant/debounce-replicant.html">
 
 	<link rel="import" href="./components/tablet-player.html">
 
@@ -77,17 +77,17 @@
 				<tablet-player id="t2" player="{{p2}}" class="flex"></tablet-player>
 			</div>
 
-			<nodecg-replicant replicant-name="p1-name" value="{{p1.name}}"></nodecg-replicant>
-			<nodecg-replicant replicant-name="p1-life" value="{{p1.life}}"></nodecg-replicant>
-			<nodecg-replicant replicant-name="p1-poison" value="{{p1.poison}}"></nodecg-replicant>
-			<nodecg-replicant replicant-name="p1-games" value="{{p1.games}}"></nodecg-replicant>
+      <debounce-replicant replicant-name="p1-name" value="{{p1.name}}" wait="500"></debounce-replicant>
+			<debounce-replicant replicant-name="p1-life" value="{{p1.life}}" wait="500"></debounce-replicant>
+			<debounce-replicant replicant-name="p1-poison" value="{{p1.poison}}" wait="500"></debounce-replicant>
+			<debounce-replicant replicant-name="p1-games" value="{{p1.games}}" wait="500"></debounce-replicant>
 
-			<nodecg-replicant replicant-name="p2-name" value="{{p2.name}}"></nodecg-replicant>
-			<nodecg-replicant replicant-name="p2-life" value="{{p2.life}}"></nodecg-replicant>
-			<nodecg-replicant replicant-name="p2-poison" value="{{p2.poison}}"></nodecg-replicant>
-			<nodecg-replicant replicant-name="p2-games" value="{{p2.games}}"></nodecg-replicant>
+			<debounce-replicant replicant-name="p2-name" value="{{p2.name}}" wait="500"></debounce-replicant>
+			<debounce-replicant replicant-name="p2-life" value="{{p2.life}}" wait="500"></debounce-replicant>
+			<debounce-replicant replicant-name="p2-poison" value="{{p2.poison}}" wait="500"></debounce-replicant>
+			<debounce-replicant replicant-name="p2-games" value="{{p2.games}}" wait="500"></debounce-replicant>
 
-			<nodecg-replicant replicant-name="tablet-flip" value="{{tabletFlip}}"></nodecg-replicant>
+			<debounce-replicant replicant-name="tablet-flip" value="{{tabletFlip}}" wait="500"></debounce-replicant>
 		</template>
 	</dom-bind>
 	<script>
