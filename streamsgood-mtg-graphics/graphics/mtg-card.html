@@ -100,8 +100,8 @@
 
 			domBind._priceDescriptor = (selected) => {
 				let descriptor = `${selected.set}`;
-				if (selected.usd) {
-					descriptor += ` | TCG-Mid: $${selected.usd}`;
+				if (selected.prices && selected.prices.usd) {
+					descriptor += ` | TCG-Mid: $${selected.prices.usd}`;
 				}
 
 				return descriptor;
