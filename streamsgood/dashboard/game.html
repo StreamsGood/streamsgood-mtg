@@ -114,16 +114,24 @@
 	</div>
 
 	<div class="layout horizontal">
-		<nodecg-vaadin-text-field class="flex name" label="Player #1" replicant-name="p1-name"></nodecg-vaadin-text-field>
-		<nodecg-vaadin-text-field class="flex name" label="Player #2" replicant-name="p2-name"></nodecg-vaadin-text-field>
+		<!-- <nodecg-vaadin-text-field class="flex name" label="Player #1" replicant-name="p1-name"></nodecg-vaadin-text-field>
+    <nodecg-vaadin-text-field class="flex name" label="Player #2" replicant-name="p2-name"></nodecg-vaadin-text-field> -->
+    <vaadin-text-field class="flex name" label="Player #1" value="{{p1-name}}"></vaadin-text-field>
+		<vaadin-text-field class="flex name" label="Player #2" value="{{p2-name}}"></vaadin-text-field>
 	</div>
 
 	<div class="layout horizontal">
-		<nodecg-vaadin-text-field class="flex deck" label="Deck Name" replicant-name="p1-deck"></nodecg-vaadin-text-field>
+		<!-- <nodecg-vaadin-text-field class="flex deck" label="Deck Name" replicant-name="p1-deck"></nodecg-vaadin-text-field>
 		<nodecg-vaadin-text-field class="flex record" label="Record" replicant-name="p1-record"></nodecg-vaadin-text-field>
 
 		<nodecg-vaadin-text-field class="flex deck" label="Deck Name" replicant-name="p2-deck"></nodecg-vaadin-text-field>
-		<nodecg-vaadin-text-field class="flex record" label="Record" replicant-name="p2-record"></nodecg-vaadin-text-field>
+    <nodecg-vaadin-text-field class="flex record" label="Record" replicant-name="p2-record"></nodecg-vaadin-text-field> -->
+
+    <vaadin-text-field class="flex deck" label="Deck Name" value="{{p1-deck}}"></vaadin-text-field>
+		<vaadin-text-field class="flex record" label="Record" value="{{p1-record}}"></vaadin-text-field>
+
+		<vaadin-text-field class="flex deck" label="Deck Name" value="{{p2-deck}}"></vaadin-text-field>
+		<vaadin-text-field class="flex record" label="Record" value="{{p2-record}}"></vaadin-text-field>
 	</div>
 
 	<div class="other-numerics layout horizontal center-justified">
@@ -163,6 +171,11 @@
 	<div class="details layout horizontal">
 		<nodecg-vaadin-text-field class="flex" label="Event Name" replicant-name="event.name"></nodecg-vaadin-text-field>
 		<nodecg-vaadin-text-field class="flex" label="Round" replicant-name="event.round"></nodecg-vaadin-text-field>
+  </div>
+
+  <div class="details layout horizontal">
+		<nodecg-vaadin-text-field class="flex" label="Commentator #1" replicant-name="commentator1-name"></nodecg-vaadin-text-field>
+		<nodecg-vaadin-text-field class="flex" label="Commentator #2" replicant-name="commentator2-name"></nodecg-vaadin-text-field>
 	</div>
 
 	<!-- <div class="details layout horizontal">
@@ -170,10 +183,16 @@
 		<nodecg-vaadin-text-field class="flex" label="Commentator #2" replicant-name="commentator2"></nodecg-vaadin-text-field>
 	</div> -->
 
+  <debounce-replicant replicant-name="p1-name" value="{{p1-name}}" wait="500"></debounce-replicant>
+  <debounce-replicant replicant-name="p1-deck" value="{{p1-deck}}" wait="500"></debounce-replicant>
+  <debounce-replicant replicant-name="p1-record" value="{{p1-record}}" wait="500"></debounce-replicant>
   <debounce-replicant replicant-name="p1-life" value="{{p1-life}}" wait="500"></debounce-replicant>
 	<debounce-replicant replicant-name="p1-poison" value="{{p1-poison}}" wait="500"></debounce-replicant>
 	<debounce-replicant replicant-name="p1-games" value="{{p1-games}}" wait="500"></debounce-replicant>
 
+  <debounce-replicant replicant-name="p2-name" value="{{p2-name}}" wait="500"></debounce-replicant>
+  <debounce-replicant replicant-name="p2-deck" value="{{p2-deck}}" wait="500"></debounce-replicant>
+  <debounce-replicant replicant-name="p2-record" value="{{p2-record}}" wait="500"></debounce-replicant>
 	<debounce-replicant replicant-name="p2-life" value="{{p2-life}}" wait="500"></debounce-replicant>
 	<debounce-replicant replicant-name="p2-poison" value="{{p2-poison}}" wait="500"></debounce-replicant>
 	<debounce-replicant replicant-name="p2-games" value="{{p2-games}}" wait="500"></debounce-replicant>

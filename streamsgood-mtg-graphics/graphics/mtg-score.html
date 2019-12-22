@@ -5,7 +5,8 @@
 	<script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 	<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
-	<link rel="import" href="../bower_components/debounce-replicant/debounce-replicant.html">
+  <link rel="import" href="../bower_components/debounce-replicant/debounce-replicant.html">
+  <link rel="import" href="../bower_components/nodecg-replicant/nodecg-replicant.html">
 	<link rel="stylesheet" href="assets/css/common.css">
 
 	<custom-style>
@@ -203,7 +204,10 @@
 			<debounce-replicant replicant-name="event.round" replicant-bundle="streamsgood" value="{{eventRound}}" wait="500"></debounce-replicant>
 			<debounce-replicant replicant-name="event.name" replicant-bundle="streamsgood" value="{{eventName}}" wait="500"></debounce-replicant>
 
-			<debounce-replicant replicant-name="countdown-display" replicant-bundle="nodecg-countdown" value="{{countdown}}" wait="0"></debounce-replicant>
+      <debounce-replicant replicant-name="commentator1-name" replicant-bundle="streamsgood" value="{{comm1Name}}" wait="500"></debounce-replicant>
+      <debounce-replicant replicant-name="commentator2-name" replicant-bundle="streamsgood" value="{{comm2Name}}" wait="500"></debounce-replicant>
+
+			<nodecg-replicant replicant-name="countdown-display" replicant-bundle="nodecg-countdown" value="{{countdown}}"></nodecg-replicant>
 		</template>
 	</dom-bind>
 </body>

@@ -11,7 +11,7 @@
     "webcomponentsjs": "^1.1.0",
     "components-font-awesome": "^4.7.0",
     "nodecg-replicant": "NodeCGElements/nodecg-replicant#^1.0.1",
-    "debounce-replicant": "StreamsGood/debounce-replicant#^2.0.0"
+    "debounce-replicant": "StreamsGood/debounce-replicant#376e52b6d2dc427d3684e1c0e40765b9c27ba00b"
   },
   "resolutions": {
     "vaadin-control-state-mixin": "^2.0.0"

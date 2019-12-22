@@ -20,6 +20,6 @@
     "webcomponentsjs": "^1.1.0",
     "polymer": "^2.5.0",
     "gsap": "^1.20.3",
-    "debounce-replicant": "StreamsGood/debounce-replicant#^2.0.0"
+    "debounce-replicant": "StreamsGood/debounce-replicant#376e52b6d2dc427d3684e1c0e40765b9c27ba00b"
   }
 }

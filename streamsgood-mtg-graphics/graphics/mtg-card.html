@@ -6,6 +6,7 @@
 	<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
   <link rel="import" href="../bower_components/debounce-replicant/debounce-replicant.html">
+  <link rel="import" href="../bower_components/nodecg-replicant/nodecg-replicant.html">
   <link rel="stylesheet" href="assets/css/common.css">
 
 	<custom-style>
@@ -68,9 +69,9 @@
 
 			<img id="hovered-preload" src="[[selected.card_faces.0.image_uris.png]]" style="opacity: 0;">
 
-			<debounce-replicant replicant-name="selected" replicant-bundle="nodecg-scryfall" value="{{selected}}" wait="0"></debounce-replicant>
-			<debounce-replicant replicant-name="selected-card-face" replicant-bundle="nodecg-scryfall" value="{{cardFace}}" wait="0"></debounce-replicant>
-			<debounce-replicant replicant-name="hovered" replicant-bundle="nodecg-scryfall" value="{{hovered}}" wait="0"></debounce-replicant>
+			<nodecg-replicant replicant-name="selected" replicant-bundle="nodecg-scryfall" value="{{selected}}"></nodecg-replicant>
+			<nodecg-replicant replicant-name="selected-card-face" replicant-bundle="nodecg-scryfall" value="{{cardFace}}"></nodecg-replicant>
+			<nodecg-replicant replicant-name="hovered" replicant-bundle="nodecg-scryfall" value="{{hovered}}"></nodecg-replicant>
 			<!-- <debounce-replicant replicant-name="event.name" replicant-bundle="streamsgood" value="{{eventName}}" wait="500"></debounce-replicant> -->
 		</template>
 	</dom-bind>
